@@ -1,5 +1,5 @@
 <?php
-    define('URL', 'http://localhost/Empresa_v10/');
+    define('URL', 'http://localhost/Empresa/');
 ?>
 <header>
     <nav class="nav-header">
