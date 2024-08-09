@@ -57,6 +57,6 @@
         </div>
     </main>
         <script src="../js/exclusao.js"></script>
-        <footer>Desenvolvedores: Matheus, Miguel e Pedro.</footer>
+        <footer>Desenvolvedores: Miguel e Brenda.</footer>
     </body>
 </html>

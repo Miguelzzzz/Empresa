@@ -26,6 +26,6 @@
         </fieldset>
     </div>
 </main>
-        <footer>Desenvolvedores: Matheus, Miguel e Pedro.</footer>
+        <footer>Desenvolvedores: Miguel e Brenda.</footer>
     </body>
 </html>
