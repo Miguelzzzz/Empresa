@@ -11,7 +11,8 @@ $telefone = addslashes($_POST ['txtTelefone']);
 $endereco = addslashes($_POST ['txtEndereco']);
 $codCargo = addslashes($_POST ['txtCargo']);
 $codDepartamento = addslashes($_POST ['txtDepartamento']);
+$created_at = addslashes($_POST['datetime']);
 
-$func->validaFuncionario($cpf, $nome, $telefone, $endereco, $codCargo, $codDepartamento);
+$func->validaFuncionario($cpf, $nome, $telefone, $endereco, $codCargo, $codDepartamento, $created_at);
 } 
 ?>

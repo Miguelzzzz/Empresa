@@ -9,13 +9,14 @@ class Cargo {
         $this->PDO = $conexao->conectar();
     }
     
-        public function insereCargo($nomeCargo) {
-            $insere = $this->PDO->prepare("insert into cargo (nomeCargo) values (:n)");
+        public function insereCargo($nomeCargo, $created_at) {
+            $insere = $this->PDO->prepare("insert into cargo (nomeCargo, created_at) values (:n, :at)");
             $insere->bindValue(":n", $nomeCargo);
+            $insere->bindValue(":at", $created_at);
             $insere->execute();
         }
 
-        public function validanomeCargo($nomeCargo) {
+        public function validanomeCargo($nomeCargo, $created_at) {
             $valida = $this->PDO->prepare("select codCargo from cargo where nomeCargo = :carg");
             $valida->bindValue(":carg", $nomeCargo);
             $valida->execute();
@@ -23,7 +24,7 @@ class Cargo {
             if ($valida->rowCount() > 0) {
                 echo "<script>alert('Cargo já cadastrado, verifique duplicidade')</script>";
             } else {
-                $this->insereCargo($nomeCargo);
+                $this->insereCargo($nomeCargo, $created_at);
                 echo "<script>alert('Cadastro de novo cargo efetivado com sucesso!')</script>";
             } 
         }
@@ -34,9 +35,10 @@ class Cargo {
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function alterarCargo($codCargo, $novoNomeCargo) {
-            $altera = $this->PDO->prepare("update cargo set nomeCargo = :novoNomeCargo where codCargo = :codCargo");
+        public function alterarCargo($codCargo, $novoNomeCargo, $created_at) {
+            $altera = $this->PDO->prepare("update cargo set nomeCargo = :novoNomeCargo, created_at = :novaDataHora where codCargo = :codCargo");
             $altera->bindParam(':novoNomeCargo', $novoNomeCargo);
+            $altera->bindParam(':novaDataHora', $created_at);
             $altera->bindParam(':codCargo', $codCargo);         
             $resultado = $altera->execute();  
             return $resultado;

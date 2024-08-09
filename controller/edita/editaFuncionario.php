@@ -15,11 +15,12 @@ if(isset($_POST['txtNNome'])){
     $Nendereco = $_POST['txtNEndereco'];
     $NnomeCargo = $_POST['txtNCargo'];
     $NnomeDepartamento = $_POST['txtNDepartamento'];
+    $created_at = addslashes($_POST['datetime']);
 
     $funcional = $_SESSION['funcional'];
     session_destroy();
 
-    $resultado = $func->alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $NnomeCargo, $NnomeDepartamento);  
+    $resultado = $func->alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $NnomeCargo, $NnomeDepartamento, $created_at);  
     header("Location: ../../view/consulta/ConsultaFuncionario.php");
 }
 ?>

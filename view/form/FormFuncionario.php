@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Departamento</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/datetime.js"></script>
 </head>
 <body>
 <?php include_once '../layout/header.php';?>
@@ -47,7 +48,8 @@
                                         </option>
                                             <?php }?>
                         </select>
-                        <br>
+                        <br><br>
+                        <input type="datetime-local" id="datetime" name="datetime"><br>
                         <input type="submit" name="btnEnviar" value="Cadastrar">
                         <br>
                     </section><br>

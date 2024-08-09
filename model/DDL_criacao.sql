@@ -8,16 +8,18 @@ create table funcionario
     cpf char(11) not null unique,
     nome varchar(40) not null,
     telefone char(15) null,
-    endereco varchar(70) not null
+    endereco varchar(70) not null,
+    created_at datetime not null
 );
 
 set sql_safe_updates=1;
 
 create table departamento (
-nomeDepartamento varchar(45) not null,
-codDepartamento int auto_increment not null,
-constraint uqDepto unique (nomeDepartamento),
-constraint primary key(codDepartamento)
+    nomeDepartamento varchar(45) not null,
+    codDepartamento int auto_increment not null,
+    created_at datetime not null,
+    constraint uqDepto unique (nomeDepartamento),
+    constraint primary key(codDepartamento)
 );
 
 	alter table funcionario add codDepartamento int not null;
@@ -28,8 +30,9 @@ constraint primary key(codDepartamento)
 create table cargo 
 (
 	nomeCargo varchar(50) not null unique,
+    created_at datetime not null,
     codCargo int auto_increment not null primary key
-    );
+);
     
 alter table funcionario add codCargo int not null;
 alter table funcionario add constraint fkCargoFunc

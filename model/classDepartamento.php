@@ -9,13 +9,14 @@ class Departamento {
         $this->PDO = $conexao ->conectar();
     }
 
-        public function insereDepartamento ($nomeDepart){
-            $insere = $this->PDO->prepare("insert into departamento (nomeDepartamento) values (:n)");
+        public function insereDepartamento ($nomeDepart, $created_at){
+            $insere = $this->PDO->prepare("insert into departamento (nomeDepartamento, created_at) values (:n, :at)");
             $insere->bindValue(":n",$nomeDepart);
+            $insere->bindValue(":at",$created_at);
             $insere->execute();
         }
 
-        public function  validanomeDepartamento($nomeDepart){
+        public function  validanomeDepartamento($nomeDepart, $created_at){
             $valida = $this->PDO->prepare("select codDepartamento from departamento where nomeDepartamento = :depto");
             $valida->bindValue(":depto", $nomeDepart);
             $valida->execute(); 
@@ -23,7 +24,7 @@ class Departamento {
             if($valida->rowCount()>0) {
             echo"<script>alert('Departamento já cadastrado, verifique duplicidade') </script>";
             }else {
-            $this->insereDepartamento ($nomeDepart);
+            $this->insereDepartamento ($nomeDepart, $created_at);
             echo"<script>alert('Cadastro de novo departamento efetivado com sucesso!')</script>";
             }
         }
@@ -34,10 +35,11 @@ class Departamento {
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
     
-        public function alterarDepartamento($codDepartamento, $novoNomeDepartamento) {         
-            $altera = $this->PDO->prepare("update departamento set nomeDepartamento = :novoNomeDepartamento where codDepartamento = :codDepartamento");
+        public function alterarDepartamento($codDepartamento, $novoNomeDepartamento, $created_at) {         
+            $altera = $this->PDO->prepare("update departamento set nomeDepartamento = :novoNomeDepartamento, created_at = :novaDataHora where codDepartamento = :codDepartamento");
             $altera->bindParam(':novoNomeDepartamento', $novoNomeDepartamento);
-            $altera->bindParam(':codDepartamento', $codDepartamento);               
+            $altera->bindParam(':codDepartamento', $codDepartamento);       
+            $altera->bindParam(':novaDataHora', $created_at);        
             $resultado = $altera->execute();
             return $resultado;
         }

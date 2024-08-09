@@ -9,4 +9,4 @@ if ($funcionarios === false) {
     echo "Erro ao consultar funcionarios.";
     exit;
 }
-?>
+?>  

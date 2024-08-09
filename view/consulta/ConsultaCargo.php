@@ -18,6 +18,7 @@
                     <tr>
                         <th>&nbsp # &nbsp</th>
                         <th>&nbsp Nome do Cargo &nbsp</th>
+                        <th>&nbsp Data Hora &nbsp</th>
                         <th>...</th>
                     </tr>
                 </thead>
@@ -26,6 +27,7 @@
                     <tr>
                         <td><?php echo htmlspecialchars($cargo['codCargo']); ?></td>
                         <td><?php echo htmlspecialchars($cargo['nomeCargo']); ?></td>
+                        <td><?php echo htmlspecialchars($cargo['created_at']); ?></td>
                         <td>&nbsp 
                             <a class='btn btn-sm btn-primary' href='../edicao/editCargo.php?altera=<?php echo $cargo['codCargo']; ?>'>
                                 <svg class='bootstrap-icons' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'>

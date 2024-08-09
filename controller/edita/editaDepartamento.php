@@ -11,7 +11,9 @@ if(isset($_GET['altera'])){
 if(isset($_POST['codDepartamento'])){
     $codDepartamento = addslashes($_POST['codDepartamento']);
     $novoNomeDepartamento = addslashes($_POST ['txtNomeNDepartamento']);
-    $departamento->alterarDepartamento($codDepartamento, $novoNomeDepartamento);  
+    $created_at = addslashes($_POST['datetime']);
+    
+    $departamento->alterarDepartamento($codDepartamento, $novoNomeDepartamento, $created_at);  
     header("Location: ../../view/consulta/ConsultaDepartamento.php");
 }
 ?>

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edição funcionário</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/datetime.js"></script>
 </head>
 <body>
     <?php include_once '../layout/header.php';?>
@@ -42,6 +43,8 @@
                         </option>
                         <?php } ?>
                     </select>
+                    <input type="datetime-local" id="datetime" name="datetime" value="<?php echo htmlspecialchars($dadosFuncionario['created_at']); ?>" hidden>
+
                         <input type="submit" name="btnEnviar" value="Alterar">
                         <br>
                     </section><br>

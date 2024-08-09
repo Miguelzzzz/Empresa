@@ -23,6 +23,7 @@
                         <th>&nbsp Endereço &nbsp</th>
                         <th>&nbsp Departamento &nbsp</th>
                         <th>&nbsp Cargo &nbsp</th>
+                        <th>&nbsp Data Hora &nbsp</th>
                         <th>...</th>
                     </tr>
                 </thead>
@@ -36,6 +37,7 @@
                         <td><?php echo htmlspecialchars($funcionario['endereco']); ?></td>
                         <td><?php echo htmlspecialchars($funcionario['nomeDepartamento']); ?></td>
                         <td><?php echo htmlspecialchars($funcionario['nomeCargo']); ?></td>
+                        <td><?php echo htmlspecialchars($funcionario['created_at']); ?></td>
                         <td>&nbsp 
                             <a class='btn btn-sm btn-primary' href='../edicao/editFuncionario.php?altera=<?php echo $funcionario['funcional']; ?>'>
                                 <svg class='bootstrap-icons' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'>
@@ -50,7 +52,7 @@
                         </td>
                     </tr>
                     <?php endforeach; ?>
-                </tbody>
+                </tbody> 
             </table>
         </div>
     </main>
