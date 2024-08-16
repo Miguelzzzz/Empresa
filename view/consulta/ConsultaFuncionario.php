@@ -21,6 +21,7 @@
                         <th>&nbsp Nome Funcionario &nbsp</th>
                         <th>&nbsp Telefone &nbsp</th>
                         <th>&nbsp Endereço &nbsp</th>
+                        <th>&nbsp Foto &nbsp</th>
                         <th>&nbsp Departamento &nbsp</th>
                         <th>&nbsp Cargo &nbsp</th>
                         <th>&nbsp Data Hora &nbsp</th>
@@ -35,6 +36,7 @@
                         <td><?php echo htmlspecialchars($funcionario['nome']); ?></td>
                         <td><?php echo htmlspecialchars($funcionario['telefone']); ?></td>
                         <td><?php echo htmlspecialchars($funcionario['endereco']); ?></td>
+                        <td><?php echo htmlspecialchars($funcionario['img']); ?></td>
                         <td><?php echo htmlspecialchars($funcionario['nomeDepartamento']); ?></td>
                         <td><?php echo htmlspecialchars($funcionario['nomeCargo']); ?></td>
                         <td><?php echo htmlspecialchars($funcionario['created_at']); ?></td>

@@ -7,13 +7,7 @@ class Funcionario {
     public function __construct(){
         $conexao = new Conexao();
         $this->PDO = $conexao->conectar();
-    } 
-
-        public function insereImagem ($imagem){
-            $insere = $this->PDO->prepare("insert to funcionario (img) value (:img)");
-            $insere->bindValue(":img", $imagem);
-            $insere->execute();
-        }
+    }     
         public function insereFuncionario ($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $created_at){
             $insere = $this->PDO->prepare("insert into funcionario (cpf, nome, telefone, endereco, img, codCargo, codDepartamento, created_at) value (:c, :n, :t, :e, :i, :g, :d, :at)");
             $insere->bindValue(":c", $cpf);
@@ -55,21 +49,21 @@ class Funcionario {
         }
 
         public function consultaFuncionario(){
-            $retorna = $this->PDO->prepare("select funcionario.funcional, funcionario.nome, funcionario.cpf, funcionario.endereco, funcionario.telefone, funcionario.created_at, departamento.nomeDepartamento, cargo.nomeCargo from departamento inner join funcionario on departamento.codDepartamento = funcionario.codDepartamento inner join cargo on cargo.codCargo = funcionario.codCargo");
+            $retorna = $this->PDO->prepare("select funcionario.funcional, funcionario.nome, funcionario.cpf, funcionario.endereco, funcionario.telefone, funcionario.img, funcionario.created_at, departamento.nomeDepartamento, cargo.nomeCargo from departamento inner join funcionario on departamento.codDepartamento = funcionario.codDepartamento inner join cargo on cargo.codCargo = funcionario.codCargo");
             $retorna->execute();
             $result = $retorna->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
 
-        public function alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $Nimagem, $NnomeCargo, $NnomeDepartamento, $created_at) {
-            $altera = $this->PDO->prepare("update funcionario set cpf = :c, nome = :n, telefone = :t, endereco = :e, imagem = :i, codCargo = :g, codDepartamento = :d, created_at = :at where funcional = :f");
+        public function alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $Npath, $NnomeCargo, $NnomeDepartamento, $created_at) {
+            $altera = $this->PDO->prepare("update funcionario set cpf = :c, nome = :n, telefone = :t, endereco = :e, img = :i, codCargo = :g, codDepartamento = :d, created_at = :at where funcional = :f");
             var_dump($altera);
             $altera->bindParam(':f', $funcional);
             $altera->bindParam(':c', $Ncpf);
             $altera->bindParam(':n', $Nnome);
             $altera->bindParam(':t', $Ntelefone);
             $altera->bindParam(':e', $Nendereco);
-            $altera->bindParam(':i', $Nimagem);
+            $altera->bindParam(':i', $Npath);
             $altera->bindParam(':g', $NnomeCargo);
             $altera->bindParam(':d', $NnomeDepartamento); 
             $altera->bindParam(':at', $created_at);

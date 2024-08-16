@@ -17,10 +17,29 @@ if(isset($_POST['txtNNome'])){
     $NnomeDepartamento = $_POST['txtNDepartamento'];
     $created_at = addslashes($_POST['datetime']);
 
-    $funcional = $_SESSION['funcional'];
-    session_destroy();
+    $arquivo = $_FILES['img-funcionario'];
 
-    $resultado = $func->alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $NnomeCargo, $NnomeDepartamento, $created_at);  
+    if($arquivo['error'])
+    die("falha ao carregar");
+
+    if($arquivo['size']>10485760)
+    die("arquivo excedeu o limite, maximo 10MB");
+
+    $pasta = "../../view/img/";
+    $caminho = "view/img/";
+    $nomeArq = $arquivo['name'];
+    $nomeCodigo = uniqid();
+    $extensao = strtolower(pathinfo($nomeArq,PATHINFO_EXTENSION));
+
+    $pathUpload = $pasta.$nomeCodigo.".".$extensao;
+    $Npath = $caminho.$nomeCodigo.".".$extensao;
+
+    if($extensao != 'jpg' && $extensao !='png')
+    die("arquivo invalido");
+    
+    $arquivoUpload = move_uploaded_file($arquivo["tmp_name"],$pathUpload);
+
+    $resultado = $func->alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $Npath, $NnomeCargo, $NnomeDepartamento, $created_at);  
     header("Location: ../../view/consulta/ConsultaFuncionario.php");
 }
 ?>

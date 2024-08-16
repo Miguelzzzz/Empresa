@@ -14,7 +14,7 @@
     <main>
         <div class="form-container">
             <fieldset>
-                <form method="POST" action="">
+                <form method="POST" enctype="multipart/form-data"  action="">
                     <section id="funcionario">
                         <legend>Dados do Funcionário</legend><br>
                         <input type="text" placeholder="Nome: " name="txtNNome" value="<?php echo htmlspecialchars($dadosFuncionario['nome']); ?>" required><br><br>
@@ -44,7 +44,7 @@
                         <?php } ?>
                     </select>
                     <input type="datetime-local" id="datetime" name="datetime" value="<?php echo htmlspecialchars($dadosFuncionario['created_at']); ?>" hidden>
-                    <input type="file" name="img-funcionario" class="btn btn-success"  accept="image/png, image/jpeg" value="<?php echo htmlspecialchars($dadosFuncionario['img-funcionario']); ?>"  multiple /><br><br>
+                    <input type="file" name="img-funcionario" class="btn btn-success"  accept="image/png, image/jpeg" value="<?php echo htmlspecialchars($dadosFuncionario['img']);?>" multiple><br><br>
 
                         <input type="submit" name="btnEnviar" value="Alterar">
                         <br>

@@ -15,7 +15,7 @@
             <?php include_once '../../controller/recebe/recebeFuncionario.php';
             $func = new Funcionario();
             ?>
-                <form method="POST" action="">
+                <form method="POST" enctype="multipart/form-data" action="">
                         <section id="cargo">
                                 <legend> Dados do Funcionario</legend><br>
 
