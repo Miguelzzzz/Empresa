@@ -9,14 +9,15 @@ class Cargo {
         $this->PDO = $conexao->conectar();
     }
     
-        public function insereCargo($nomeCargo, $created_at) {
-            $insere = $this->PDO->prepare("insert into cargo (nomeCargo, created_at) values (:n, :at)");
+        public function insereCargo($nomeCargo, $salario, $created_at) {
+            $insere = $this->PDO->prepare("insert into cargo (nomeCargo, salario, created_at) values (:n, :s, :at)");
             $insere->bindValue(":n", $nomeCargo);
+            $insere->bindValue(":s", $salario);
             $insere->bindValue(":at", $created_at);
             $insere->execute();
         }
 
-        public function validanomeCargo($nomeCargo, $created_at) {
+        public function validanomeCargo($nomeCargo, $salario, $created_at) {
             $valida = $this->PDO->prepare("select codCargo from cargo where nomeCargo = :carg");
             $valida->bindValue(":carg", $nomeCargo);
             $valida->execute();
@@ -24,7 +25,7 @@ class Cargo {
             if ($valida->rowCount() > 0) {
                 echo "<script>alert('Cargo já cadastrado, verifique duplicidade')</script>";
             } else {
-                $this->insereCargo($nomeCargo, $created_at);
+                $this->insereCargo($nomeCargo, $salario, $created_at);
                 echo "<script>alert('Cadastro de novo cargo efetivado com sucesso!')</script>";
             } 
         }
@@ -35,9 +36,10 @@ class Cargo {
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function alterarCargo($codCargo, $novoNomeCargo, $created_at) {
-            $altera = $this->PDO->prepare("update cargo set nomeCargo = :novoNomeCargo, created_at = :novaDataHora where codCargo = :codCargo");
+        public function alterarCargo($codCargo, $novoNomeCargo, $novoSalario, $created_at) {
+            $altera = $this->PDO->prepare("update cargo set nomeCargo = :novoNomeCargo, created_at = :novaDataHora, salario = :novoSalario where codCargo = :codCargo");
             $altera->bindParam(':novoNomeCargo', $novoNomeCargo);
+            $altera->bindParam(':novoSalario', $novoSalario);
             $altera->bindParam(':novaDataHora', $created_at);
             $altera->bindParam(':codCargo', $codCargo);         
             $resultado = $altera->execute();  

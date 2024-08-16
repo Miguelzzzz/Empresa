@@ -9,19 +9,25 @@ class Funcionario {
         $this->PDO = $conexao->conectar();
     } 
 
-        public function insereFuncionario ($cpf, $nome, $telefone, $endereco, $codCargo, $codDepartamento, $created_at){
-            $insere = $this->PDO->prepare("insert into funcionario (cpf, nome, telefone, endereco, codCargo, codDepartamento, created_at) value (:c, :n, :t, :e, :g, :d, :at)");
+        public function insereImagem ($imagem){
+            $insere = $this->PDO->prepare("insert to funcionario (img) value (:img)");
+            $insere->bindValue(":img", $imagem);
+            $insere->execute();
+        }
+        public function insereFuncionario ($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $created_at){
+            $insere = $this->PDO->prepare("insert into funcionario (cpf, nome, telefone, endereco, img, codCargo, codDepartamento, created_at) value (:c, :n, :t, :e, :i, :g, :d, :at)");
             $insere->bindValue(":c", $cpf);
             $insere->bindValue(":n", $nome);
             $insere->bindValue(":t", $telefone);
             $insere->bindValue(":e", $endereco);
+            $insere->bindValue(":i", $imagem);
             $insere->bindValue(":g", $codCargo);
             $insere->bindValue(":d", $codDepartamento); 
             $insere->bindValue(":at", $created_at);
             $insere->execute();
         }
 
-        public function  validaFuncionario($cpf, $nome, $telefone, $endereco, $codCargo, $codDepartamento, $created_at){
+        public function  validaFuncionario($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $created_at){
             $valida = $this->PDO->prepare("select cpf from funcionario where cpf = :c");
             $valida->bindValue(":c", $cpf);
             $valida->execute();
@@ -29,7 +35,7 @@ class Funcionario {
             if($valida->rowCount()>0) {
             echo"<script>alert('Funcionario já cadastrado, verifique duplicidade') </script>";
             }else {
-            $this->insereFuncionario($cpf, $nome, $telefone, $endereco, $codCargo, $codDepartamento, $created_at);
+            $this->insereFuncionario($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $created_at);
             echo"<script>alert('Cadastro de novo Funcionario efetivado com sucesso!')</script>";
             }
         }
@@ -55,14 +61,15 @@ class Funcionario {
             return $result;
         }
 
-        public function alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $NnomeCargo, $NnomeDepartamento, $created_at) {
-            $altera = $this->PDO->prepare("update funcionario set cpf = :c, nome = :n, telefone = :t, endereco = :e, codCargo = :g, codDepartamento = :d, created_at = :at where funcional = :f");
+        public function alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $Nimagem, $NnomeCargo, $NnomeDepartamento, $created_at) {
+            $altera = $this->PDO->prepare("update funcionario set cpf = :c, nome = :n, telefone = :t, endereco = :e, imagem = :i, codCargo = :g, codDepartamento = :d, created_at = :at where funcional = :f");
             var_dump($altera);
             $altera->bindParam(':f', $funcional);
             $altera->bindParam(':c', $Ncpf);
             $altera->bindParam(':n', $Nnome);
             $altera->bindParam(':t', $Ntelefone);
             $altera->bindParam(':e', $Nendereco);
+            $altera->bindParam(':i', $Nimagem);
             $altera->bindParam(':g', $NnomeCargo);
             $altera->bindParam(':d', $NnomeDepartamento); 
             $altera->bindParam(':at', $created_at);

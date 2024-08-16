@@ -18,6 +18,7 @@
                     <tr>
                         <th>&nbsp # &nbsp</th>
                         <th>&nbsp Nome do Cargo &nbsp</th>
+                        <th>&nbsp Salário &nbsp</th>
                         <th>&nbsp Data Hora &nbsp</th>
                         <th>...</th>
                     </tr>
@@ -27,6 +28,7 @@
                     <tr>
                         <td><?php echo htmlspecialchars($cargo['codCargo']); ?></td>
                         <td><?php echo htmlspecialchars($cargo['nomeCargo']); ?></td>
+                        <td><?php echo htmlspecialchars($cargo['salario']); ?></td>
                         <td><?php echo htmlspecialchars($cargo['created_at']); ?></td>
                         <td>&nbsp 
                             <a class='btn btn-sm btn-primary' href='../edicao/editCargo.php?altera=<?php echo $cargo['codCargo']; ?>'>

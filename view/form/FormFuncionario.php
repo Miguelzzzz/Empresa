@@ -6,6 +6,7 @@
     <title>Cadastro Departamento</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/datetime.js"></script>
+    <script src="../js/img.js"></script>
 </head>
 <body>
 <?php include_once '../layout/header.php';?>
@@ -49,7 +50,9 @@
                                             <?php }?>
                         </select>
                         <br><br>
-                        <input type="datetime-local" id="datetime" name="datetime"><br>
+                        <input type="datetime-local" id="datetime" name="datetime"><br><br>
+                        <input type="file" name="img-funcionario" class="btn btn-success"  accept="image/png, image/jpeg"  multiple /><br><br>
+
                         <input type="submit" name="btnEnviar" value="Cadastrar">
                         <br>
                     </section><br>

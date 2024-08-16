@@ -9,6 +9,7 @@ create table funcionario
     nome varchar(40) not null,
     telefone char(15) null,
     endereco varchar(70) not null,
+    img varchar(100) not null,
     created_at datetime not null
 );
 
@@ -30,6 +31,7 @@ create table departamento (
 create table cargo 
 (
 	nomeCargo varchar(50) not null unique,
+    salario decimal(8, 2) not null,
     created_at datetime not null,
     codCargo int auto_increment not null primary key
 );
