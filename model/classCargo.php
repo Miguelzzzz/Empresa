@@ -1,5 +1,6 @@
 <?php
-require_once "classConexao.php";
+
+require_once ("classConexao.php");
 
 class Cargo {
 

@@ -1,31 +1,32 @@
 <?php
+
 require_once ("classConexao.php");
 
 class Departamento {
- 
+
     private $PDO;
     public function __construct(){
         $conexao = new Conexao();
         $this->PDO = $conexao ->conectar();
     }
 
-        public function insereDepartamento ($nomeDepart, $created_at){
+        public function insereDepartamento($nomeDepart, $created_at){
             $insere = $this->PDO->prepare("insert into departamento (nomeDepartamento, created_at) values (:n, :at)");
             $insere->bindValue(":n",$nomeDepart);
             $insere->bindValue(":at",$created_at);
             $insere->execute();
         }
 
-        public function  validanomeDepartamento($nomeDepart, $created_at){
+        public function validanomeDepartamento($nomeDepart, $created_at){
             $valida = $this->PDO->prepare("select codDepartamento from departamento where nomeDepartamento = :depto");
             $valida->bindValue(":depto", $nomeDepart);
             $valida->execute(); 
 
             if($valida->rowCount()>0) {
-            echo"<script>alert('Departamento já cadastrado, verifique duplicidade') </script>";
+                echo"<script>alert('Departamento já cadastrado, verifique duplicidade') </script>";
             }else {
-            $this->insereDepartamento ($nomeDepart, $created_at);
-            echo"<script>alert('Cadastro de novo departamento efetivado com sucesso!')</script>";
+                $this->insereDepartamento($nomeDepart, $created_at);
+                echo"<script>alert('Cadastro de novo departamento efetivado com sucesso!')</script>";
             }
         }
 

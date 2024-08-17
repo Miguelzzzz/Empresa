@@ -1,4 +1,5 @@
 <?php
+
 require_once ("classConexao.php");
 
 class Funcionario {
@@ -8,7 +9,7 @@ class Funcionario {
         $conexao = new Conexao();
         $this->PDO = $conexao->conectar();
     }     
-        public function insereFuncionario ($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $created_at){
+        public function insereFuncionario($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $created_at){
             $insere = $this->PDO->prepare("insert into funcionario (cpf, nome, telefone, endereco, img, codCargo, codDepartamento, created_at) value (:c, :n, :t, :e, :i, :g, :d, :at)");
             $insere->bindValue(":c", $cpf);
             $insere->bindValue(":n", $nome);
@@ -27,10 +28,10 @@ class Funcionario {
             $valida->execute();
         
             if($valida->rowCount()>0) {
-            echo"<script>alert('Funcionario já cadastrado, verifique duplicidade') </script>";
+                echo"<script>alert('Funcionario já cadastrado, verifique duplicidade') </script>";
             }else {
-            $this->insereFuncionario($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $created_at);
-            echo"<script>alert('Cadastro de novo Funcionario efetivado com sucesso!')</script>";
+                $this->insereFuncionario($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $created_at);
+                echo"<script>alert('Cadastro de novo Funcionario efetivado com sucesso!')</script>";
             }
         }
 

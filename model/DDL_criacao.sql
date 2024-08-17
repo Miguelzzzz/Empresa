@@ -24,7 +24,6 @@ create table departamento (
 );
 
 	alter table funcionario add codDepartamento int not null;
-    
     alter table funcionario add constraint fkfuncDepto
     foreign key (codDepartamento) references departamento (codDepartamento);
 
