@@ -6,7 +6,6 @@
     <title>Cadastro Departamento</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/relatorio.css">
-    <script src="../js/datetime.js"></script>
     <script src="../js/img.js"></script>
 </head>
 <body>
@@ -21,7 +20,13 @@
             <?php foreach ($funcionarios as $funcionario): ?>
                 <div class="imagem-lista">                    
                     <img src="../../<?php echo htmlspecialchars($funcionario['img']); ?>" style="height: 130px; border-radius: 10px; " ><br>
-                    <input type="file" name="img-funcionario" class="btn btn-success"  accept="image/png, image/jpeg"  multiple /><br><br>
+
+                    <form method="POST"  enctype="multipart/form-data"  action="">
+                        <input type="text" value='<?php echo htmlspecialchars($funcionario['funcional']); ?>' hidden>
+                        <input type="file" name="img-funcionario" class="btn btn-success"  accept="image/png, image/jpeg" multiple /><br><br>
+                        <button type="submit" name="btnEnviar" value="Alterar">Salvar</button><br><br>
+                    </form>
+
                 </div>     
                 <ul class="dados-lista">   
                     <li><h4>Funcional: </h4><?php echo htmlspecialchars($funcionario['funcional']); ?></li><br></br>
