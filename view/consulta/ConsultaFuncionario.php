@@ -1,5 +1,5 @@
 <?php include_once '../../controller/exibe/exibeFuncionario.php'; ?>
-
+<?php include_once '../../controller/relatorio/relatorioFuncionario.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +40,7 @@
                             <td><?php echo htmlspecialchars($funcionario['nome']); ?></td>
                             <td><?php echo htmlspecialchars($funcionario['telefone']); ?></td>
                             <td><?php echo htmlspecialchars($funcionario['endereco']); ?></td>
-                            <td><?php echo htmlspecialchars($funcionario['img']); ?></td>
+                            <td><img class="img" src="../../<?php echo htmlspecialchars($funcionario['img']); ?>" style="height: 130px; border-radius: 10px;" ></td>
                             <td><?php echo htmlspecialchars($funcionario['nomeDepartamento']); ?></td>
                             <td><?php echo htmlspecialchars($funcionario['nomeCargo']); ?></td>
                             <td><?php echo htmlspecialchars($funcionario['created_at']); ?></td>
@@ -53,6 +53,12 @@
                                 <a class='btn btn-sm btn-danger' href="#" onclick="excluirFuncionario(<?php echo $funcionario['funcional']; ?>)">
                                     <svg class='bootstrap-icons' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'>
                                     <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0'/>
+                                    </svg>
+                                </a>
+                                <a class='btn btn-sm btn-success' href='../relatorios/relatorioFuncionario.php?imprime=<?php echo $funcionario['funcional']; ?>'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                                    <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5"/>
+                                    <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
                                     </svg>
                                 </a>&nbsp
                             </td>

@@ -47,7 +47,6 @@
                         </select>
                         
                         <input type="datetime-local" id="datetime" name="datetime" value="<?php echo htmlspecialchars($dadosFuncionario['created_at']); ?>" hidden>
-                        <input type="file" name="img-funcionario" class="btn btn-success"  accept="image/png, image/jpeg" value="<?php echo htmlspecialchars($dadosFuncionario['img']);?>" multiple><br><br>
                         <input type="submit" name="btnEnviar" value="Alterar"><br>
                 </section><br>
             </form>
