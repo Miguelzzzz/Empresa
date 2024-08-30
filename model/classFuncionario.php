@@ -84,8 +84,7 @@ class Funcionario {
         }
 
         public function obterFuncionario($funcional) {
-            $consulta = $this->PDO->prepare("select * from funcionario where funcional = :funcional");
-            $consulta->bindParam(':funcional', $funcional);
+            $consulta = $this->PDO->prepare( "select funcionario.funcional, funcionario.nome, funcionario.cpf, funcionario.endereco, funcionario.telefone, funcionario.img, funcionario.created_at, departamento.nomeDepartamento, cargo.nomeCargo from departamento inner join funcionario on departamento.codDepartamento = funcionario.codDepartamento inner join cargo on cargo.codCargo = funcionario.codCargo where funcionario.funcional = :funcional" );            $consulta->bindParam(':funcional', $funcional);
             $consulta->execute();
             return $consulta->fetch(PDO::FETCH_ASSOC);
         }
