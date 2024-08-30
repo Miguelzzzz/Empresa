@@ -72,6 +72,17 @@ class Funcionario {
             return $resultado;
         }
         
+        public function alterarFoto($funcional, $Npath, $created_at) {
+            $altera = $this->PDO->prepare("update funcionario set img = :img, created_at = :at where funcional = :f");
+            var_dump($altera);
+            $altera->bindParam(':f', $funcional);
+            $altera->bindParam(':img', $Npath);
+            $altera->bindParam(':at', $created_at);
+            $resultado = $altera->execute();
+            var_dump($resultado);
+            return $resultado;
+        }
+
         public function obterFuncionario($funcional) {
             $consulta = $this->PDO->prepare("select * from funcionario where funcional = :funcional");
             $consulta->bindParam(':funcional', $funcional);
