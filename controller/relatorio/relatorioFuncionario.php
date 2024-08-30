@@ -38,7 +38,7 @@ $funcionarios = $funcionario->consultaFuncionario();
 
         $resultado = $funcionario->alterarFoto($funcional, $Npath, $created_at);  
         
-        header("Location: ../../view/relatorios/relatorioFuncionario.php");
+        header("Location: ../../view/consulta/consultaFuncionario.php");
     }
     if ($funcionarios === false) {
         echo "Erro ao criar relatorio.";
