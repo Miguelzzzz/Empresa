@@ -10,6 +10,7 @@ create table funcionario
     telefone char(15) null,
     endereco varchar(70) not null,
     img varchar(100) not null,
+    acesso boolean not null,
     created_at datetime not null
 );
 
@@ -34,7 +35,15 @@ create table cargo
     created_at datetime not null,
     codCargo int auto_increment not null primary key
 );
-    
+
+create table login {
+    funcional int(11) not null primary key,
+    senha varchar(30) not null,
+    acesso boolean not null,
+    foreign key (acesso) references funcionario (acesso)
+    foreign key (funcional) references funcionario (funcional)
+}
+
 alter table funcionario add codCargo int not null;
 alter table funcionario add constraint fkCargoFunc
 foreign key (codCargo) references cargo (codCargo);
