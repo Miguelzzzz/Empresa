@@ -43,6 +43,7 @@ class Login
                 }
                 $_SESSION['funcional'] = $usuario['funcional'];
                 echo "<script>alert('Sessão iniciada')</script>";
+                header("location: ../usuario/perfil.php");
             }
         }
     }
