@@ -1,3 +1,5 @@
+<?php include_once '../../controller/protegePaginas.php' ?> 
+
 <!DOCTYPE html>
 <html lang="en">
 
