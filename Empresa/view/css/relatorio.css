@@ -1,0 +1,31 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    flex-direction: row;
+    width: 620px ;
+    height: 977px ;
+}
+
+.dados-lista{
+    list-style: none;
+}
+
+.imagem-lista > img{
+    border: black solid 0.9px;
+}
+
+.dados-lista > li{
+    margin: -15px;
+}
+
+.const_table{
+    background-color: white;
+    padding: 0 25px 0 25px;
+}
