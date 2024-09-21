@@ -1,5 +1,7 @@
 <?php include_once '../../controller/exibe/exibeFuncionario.php'; ?>
 <?php include_once '../../controller/relatorio/relatorioFuncionario.php'; ?>
+<?php include_once '../../controller/checarAdmin.php' ?> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +30,7 @@
                         <th>&nbsp Foto &nbsp</th>
                         <th>&nbsp Departamento &nbsp</th>
                         <th>&nbsp Cargo &nbsp</th>
+                        <th>&nbsp Acesso &nbsp</th>
                         <th>&nbsp Data Hora &nbsp</th>
                         <th>...</th>
                     </tr>
@@ -43,6 +46,7 @@
                             <td><img class="img" src="../../<?php echo htmlspecialchars($funcionario['img']); ?>" style="height: 130px; border-radius: 10px;" ></td>
                             <td><?php echo htmlspecialchars($funcionario['nomeDepartamento']); ?></td>
                             <td><?php echo htmlspecialchars($funcionario['nomeCargo']); ?></td>
+                            <td><?php echo htmlspecialchars($funcionario['acesso']); ?></td>
                             <td><?php echo htmlspecialchars($funcionario['created_at']); ?></td>
                             <td>&nbsp 
                                 <a class='btn btn-sm btn-primary' href='../edicao/editFuncionario.php?altera=<?php echo $funcionario['funcional']; ?>'>

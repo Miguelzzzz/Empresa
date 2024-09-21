@@ -12,6 +12,7 @@ require_once '../../model/classFuncionario.php';
       $endereco = addslashes($_POST ['txtEndereco']);
       $codCargo = addslashes($_POST ['txtCargo']);
       $codDepartamento = addslashes($_POST ['txtDepartamento']);
+      $acesso = addslashes($_POST ['txtAcesso']);
       $created_at = addslashes($_POST['datetime']);
 
       $arquivo = $_FILES['img-funcionario'];
@@ -36,6 +37,6 @@ require_once '../../model/classFuncionario.php';
          
       $arquivoUpload = move_uploaded_file($arquivo["tmp_name"],$pathUpload);
 
-      $func->validaFuncionario($cpf, $nome, $telefone, $endereco, $path, $codCargo, $codDepartamento, $created_at);
+      $func->validaFuncionario($cpf, $nome, $telefone, $endereco, $path, $codCargo, $codDepartamento, $acesso, $created_at);
    } 
 ?>

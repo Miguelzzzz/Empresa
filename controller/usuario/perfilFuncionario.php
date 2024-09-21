@@ -2,8 +2,6 @@
 
 include_once "../../model/classFuncionario.php";
 
-
-session_start();
 $funcional = isset($_SESSION['funcional']) ? $_SESSION['funcional'] : null;
 
 if ($funcional) {

@@ -4,7 +4,7 @@
 <header>
     <nav class="nav-header">
         <ul>
-            <li class="dropdown dropbtn"><a href=<?php echo URL; ?>>Home</a></li>
+            <li class="dropdown dropbtn"><a href="<?php echo URL; ?>view/indexAdmin.php">Home</a></li>
             <li class="dropdown dropbtn">
                 <div>Cargo</div>
                 <div class="dropdown-content">

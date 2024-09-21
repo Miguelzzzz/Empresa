@@ -18,31 +18,12 @@ $func = new Funcionario();
         $Nendereco = $_POST['txtNEndereco'];
         $NnomeCargo = $_POST['txtNCargo'];
         $NnomeDepartamento = $_POST['txtNDepartamento'];
+        $Nacesso = $_POST['txtAcesso'];
         $created_at = addslashes($_POST['datetime']);
 
-        $arquivo = $_FILES['img-funcionario'];
+        $Npath = addslashes($_POST['img-funcionario']);
 
-        if($arquivo['error'])
-        die("falha ao carregar");
-
-        if($arquivo['size']>10485760)
-        die("arquivo excedeu o limite, maximo 10MB");
-
-        $pasta = "../../view/img/";
-        $caminho = "view/img/";
-        $nomeArq = $arquivo['name'];
-        $nomeCodigo = uniqid();
-        $extensao = strtolower(pathinfo($nomeArq,PATHINFO_EXTENSION));
-
-        $pathUpload = $pasta.$nomeCodigo.".".$extensao;
-        $Npath = $caminho.$nomeCodigo.".".$extensao;
-
-        if($extensao != 'jpg' && $extensao !='png')
-        die("arquivo invalido");
-        
-        $arquivoUpload = move_uploaded_file($arquivo["tmp_name"],$pathUpload);
-
-        $resultado = $func->alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $Npath, $NnomeCargo, $NnomeDepartamento, $created_at);  
+        $resultado = $func->alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $Npath, $NnomeCargo, $NnomeDepartamento, $Nacesso, $created_at);  
         
         header("Location: ../../view/consulta/ConsultaFuncionario.php");
     }

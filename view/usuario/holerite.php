@@ -6,15 +6,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil usuario</title>
+    <title>Holerite usuario</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/relatorio.css">
+    <script src="../js/datetime.js"></script>
     <script src="../js/img.js"></script>
 </head>
 
 <body>
 
 <?php include_once '../layout/headerUsuario.php';?>
+
+<!-- <header>
+
+        <nav class="nav-header">
+            <ul>
+                <li class="dropdown dropbtn">
+                    <div>Funcionario</div>
+                    <div class="dropdown-content">
+                        <a href="view/usuario/perfil.php">• Consultar dados pessoais </a>
+                        <a href="view/usuario/HoleritePessoal.php">• Holerite </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header> -->
 
     <main>
         <section class="const_table"><br>

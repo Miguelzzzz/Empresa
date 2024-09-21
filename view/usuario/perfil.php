@@ -1,4 +1,4 @@
-<?php include_once '../../controller/protegePaginas.php' ?> 
+<?php include_once '../../controller/checarUsuario.php' ?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,16 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Departamento</title>
+    <title>Perfil usuario</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/relatorio.css">
-    <script src="../js/datetime.js"></script>
     <script src="../js/img.js"></script>
 </head>
 
 <body>
 
-    <?php include_once '../layout/header.php'; ?>
+<?php include_once '../layout/headerUsuario.php';?>
 
     <main>
         <section class="const_table"><br>

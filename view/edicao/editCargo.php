@@ -1,4 +1,5 @@
 <?php include_once '../../controller/edita/editaCargo.php'; ?>
+<?php include_once '../../controller/checarAdmin.php' ?> 
 
 <!DOCTYPE html>
 <html lang="en">

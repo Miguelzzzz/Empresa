@@ -1,4 +1,5 @@
 <?php include_once '../../controller/edita/editaFuncionario.php'; ?>
+<?php include_once '../../controller/checarAdmin.php' ?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +20,7 @@
             <form method="POST" enctype="multipart/form-data"  action="">
                 <section id="funcionario">
                     <legend>Dados do Funcionário</legend><br>
+                        <input type="hidden" name="img-funcionario" value="<?php echo htmlspecialchars($dadosFuncionario['img']); ?>">
                         <input type="text" placeholder="Nome: " name="txtNNome" value="<?php echo htmlspecialchars($dadosFuncionario['nome']); ?>" required><br><br>
                         <input type="cpf" placeholder="CPF: " name="txtNCPF" minlength="11" maxlength="11" value="<?php echo htmlspecialchars($dadosFuncionario['cpf']); ?>"required><br><br>
                         <input type="text" placeholder="Telefone: " name="txtNTelefone" minlength="9" maxlength="15" value="<?php echo htmlspecialchars($dadosFuncionario['telefone']); ?>" required><br><br>
@@ -44,6 +46,14 @@
                                     <?php echo $departamento['nomeDepartamento']; ?>
                                 </option>
                             <?php } ?>
+                        </select>
+
+                        <br><br>
+
+                        <select name="txtAcesso">
+                            <option  value="<?php echo htmlspecialchars($dadosFuncionario['acesso']); ?>">Selecione o nível de acesso</option>
+                            <option value="1">Administrador do Sistema</option>
+                            <option value="0">Funcionário Comum</option>
                         </select>
                         
                         <input type="datetime-local" id="datetime" name="datetime" value="<?php echo htmlspecialchars($dadosFuncionario['created_at']); ?>" hidden>

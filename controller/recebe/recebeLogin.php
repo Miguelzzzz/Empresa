@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../model/classLogin.php';
+require_once 'model/classLogin.php';
 
 if (isset($_POST['txtFuncional'])) {
 

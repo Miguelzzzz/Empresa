@@ -26,7 +26,7 @@ class Login
     {
         $valida = $this->PDO->prepare("select * from login where funcional = :f");
         $valida->bindValue(":f", $funcional);
-        $valida->execute();
+        $valida->execute(); 
 
         if ($valida->rowCount() == 0) {
             $this->insereLogin($funcional, $senha, $acesso);
@@ -42,8 +42,18 @@ class Login
                     session_start();
                 }
                 $_SESSION['funcional'] = $usuario['funcional'];
-                echo "<script>alert('Sessão iniciada')</script>";
-                header("location: ../usuario/perfil.php");
+                $_SESSION['acesso'] = $usuario['acesso'];
+
+                
+             
+                if($usuario['acesso'] == 1){
+                    echo "<script>alert('Sessão iniciada')</script>";
+                    header("location: view/indexAdmin.php");
+                } else if($usuario['funcional']){
+                    echo "<script>alert('Sessão iniciada')</script>";
+                    echo var_dump("acesso", $_SESSION['acesso'] );
+                    header("location: view/usuario/perfil.php");
+            }
             }
         }
     }

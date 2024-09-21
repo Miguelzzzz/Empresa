@@ -9,8 +9,8 @@ class Funcionario {
         $conexao = new Conexao();
         $this->PDO = $conexao->conectar();
     }     
-        public function insereFuncionario($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $created_at){
-            $insere = $this->PDO->prepare("insert into funcionario (cpf, nome, telefone, endereco, img, codCargo, codDepartamento, created_at) value (:c, :n, :t, :e, :i, :g, :d, :at)");
+        public function insereFuncionario($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $acesso, $created_at){
+            $insere = $this->PDO->prepare("insert into funcionario (cpf, nome, telefone, endereco, img, codCargo, codDepartamento, acesso, created_at) value (:c, :n, :t, :e, :i, :g, :d, :a, :at)");
             $insere->bindValue(":c", $cpf);
             $insere->bindValue(":n", $nome);
             $insere->bindValue(":t", $telefone);
@@ -18,11 +18,12 @@ class Funcionario {
             $insere->bindValue(":i", $imagem);
             $insere->bindValue(":g", $codCargo);
             $insere->bindValue(":d", $codDepartamento); 
+            $insere->bindValue(":a", $acesso); 
             $insere->bindValue(":at", $created_at);
             $insere->execute();
         }
 
-        public function  validaFuncionario($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $created_at){
+        public function  validaFuncionario($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $acesso, $created_at){
             $valida = $this->PDO->prepare("select cpf from funcionario where cpf = :c");
             $valida->bindValue(":c", $cpf);
             $valida->execute();
@@ -30,7 +31,7 @@ class Funcionario {
             if($valida->rowCount()>0) {
                 echo"<script>alert('Funcionario já cadastrado, verifique duplicidade') </script>";
             }else {
-                $this->insereFuncionario($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $created_at);
+                $this->insereFuncionario($cpf, $nome, $telefone, $endereco, $imagem, $codCargo, $codDepartamento, $acesso, $created_at);
                 echo"<script>alert('Cadastro de novo Funcionario efetivado com sucesso!')</script>";
             }
         }
@@ -50,14 +51,14 @@ class Funcionario {
         }
 
         public function consultaFuncionario(){
-            $retorna = $this->PDO->prepare("select funcionario.funcional, funcionario.nome, funcionario.cpf, funcionario.endereco, funcionario.telefone, funcionario.img, funcionario.created_at, departamento.nomeDepartamento, cargo.nomeCargo from departamento inner join funcionario on departamento.codDepartamento = funcionario.codDepartamento inner join cargo on cargo.codCargo = funcionario.codCargo");
+            $retorna = $this->PDO->prepare("select funcionario.funcional, funcionario.nome, funcionario.cpf, funcionario.endereco, funcionario.telefone, funcionario.img, funcionario.created_at, funcionario.acesso,  departamento.nomeDepartamento, cargo.nomeCargo from departamento inner join funcionario on departamento.codDepartamento = funcionario.codDepartamento inner join cargo on cargo.codCargo = funcionario.codCargo");
             $retorna->execute();
             $result = $retorna->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
 
-        public function alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $Npath, $NnomeCargo, $NnomeDepartamento, $created_at) {
-            $altera = $this->PDO->prepare("update funcionario set cpf = :c, nome = :n, telefone = :t, endereco = :e, img = :i, codCargo = :g, codDepartamento = :d, created_at = :at where funcional = :f");
+        public function alterarFuncionario($funcional, $Ncpf, $Nnome, $Ntelefone, $Nendereco, $Npath, $NnomeCargo, $NnomeDepartamento, $Nacesso, $created_at){
+            $altera = $this->PDO->prepare("update funcionario set cpf = :c, nome = :n, telefone = :t, endereco = :e, img = :i, codCargo = :g, codDepartamento = :d, acesso = :ac, created_at = :at where funcional = :f");
             var_dump($altera);
             $altera->bindParam(':f', $funcional);
             $altera->bindParam(':c', $Ncpf);
@@ -66,7 +67,8 @@ class Funcionario {
             $altera->bindParam(':e', $Nendereco);
             $altera->bindParam(':i', $Npath);
             $altera->bindParam(':g', $NnomeCargo);
-            $altera->bindParam(':d', $NnomeDepartamento); 
+            $altera->bindParam(':d', $NnomeDepartamento);
+            $altera->bindParam(':ac', $Nacesso);
             $altera->bindParam(':at', $created_at);
             $resultado = $altera->execute();
             return $resultado;
@@ -95,7 +97,7 @@ class Funcionario {
         }
 
         public function obterFuncionario($funcional) {
-            $consulta = $this->PDO->prepare( "select funcionario.funcional, funcionario.nome, funcionario.cpf, funcionario.endereco, funcionario.telefone, funcionario.img, funcionario.created_at, departamento.nomeDepartamento, cargo.nomeCargo from departamento inner join funcionario on departamento.codDepartamento = funcionario.codDepartamento inner join cargo on cargo.codCargo = funcionario.codCargo where funcionario.funcional = :funcional" );            $consulta->bindParam(':funcional', $funcional);
+            $consulta = $this->PDO->prepare( "select funcionario.funcional, funcionario.nome, funcionario.cpf, funcionario.endereco, funcionario.telefone, funcionario.img, funcionario.created_at, funcionario.acesso, departamento.nomeDepartamento, cargo.nomeCargo from departamento inner join funcionario on departamento.codDepartamento = funcionario.codDepartamento inner join cargo on cargo.codCargo = funcionario.codCargo where funcionario.funcional = :funcional" );            $consulta->bindParam(':funcional', $funcional);
             $consulta->execute();
             return $consulta->fetch(PDO::FETCH_ASSOC);
         }
