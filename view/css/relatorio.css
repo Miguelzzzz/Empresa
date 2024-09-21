@@ -29,3 +29,26 @@ main {
     background-color: white;
     padding: 0 25px 0 25px;
 }
+
+.btnUpload {
+    background-color: #82f888;
+    color: black; 
+    font-weight: 700;
+    padding: 9px 25px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+    margin-bottom: 12px;
+}
+
+.btnUpload:hover {
+    background-color: #0aa812;
+    color: rgb(255, 255, 255); 
+    font-weight: 700;
+    padding: 9px 25px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-bottom: 12px;
+}

@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($resultado) {
         echo "<script>alert('Dados atualizados com sucesso!');
-       window.location.href = '../../view/usuario/perfil.php';</script>";
+        window.location.href = '../../view/usuario/perfil.php';</script>";
     } else {
         echo "<script>alert('Erro ao atualizar os dados')</script>";
     }

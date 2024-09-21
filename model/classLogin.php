@@ -12,13 +12,12 @@ class Login
         $this->PDO = $conexao->conectar();
     }
 
-    public function insereLogin($funcional, $senha, $acesso)
+    public function insereLogin($funcional, $senha)
     {
         $hash_senha = password_hash($senha, PASSWORD_DEFAULT);
-        $insere = $this->PDO->prepare("insert into login (funcional, senha, acesso) values (:f, :s, :a)");
+        $insere = $this->PDO->prepare("insert into login (funcional, senha) values (:f, :s)");
         $insere->bindValue(":f", $funcional);
         $insere->bindValue(":s", $hash_senha);
-        $insere->bindValue(":a", $acesso);
         $insere->execute();
     }
 
@@ -28,11 +27,16 @@ class Login
         $valida->bindValue(":f", $funcional);
         $valida->execute(); 
 
+        $validaA = $this->PDO->prepare("select * from funcionario where funcional = :f");
+        $validaA->bindValue(":f", $funcional);
+        $validaA->execute(); 
+
         if ($valida->rowCount() == 0) {
-            $this->insereLogin($funcional, $senha, $acesso);
+            $this->insereLogin($funcional, $senha);
             echo "<script>alert('Nova senha cadastrada')</script>";
         } else {
             $usuario = $valida->fetch(PDO::FETCH_ASSOC);
+            $acesso = $validaA->fetch(PDO::FETCH_ASSOC);
 
             if(!password_verify($senha, $usuario['senha'])){
                 echo "<script>alert('Senha incorreta')</script>";
@@ -42,11 +46,8 @@ class Login
                     session_start();
                 }
                 $_SESSION['funcional'] = $usuario['funcional'];
-                $_SESSION['acesso'] = $usuario['acesso'];
-
-                
-             
-                if($usuario['acesso'] == 1){
+                $_SESSION['acesso'] = $acesso['acesso'];
+                if($acesso['acesso'] == 1){
                     echo "<script>alert('Sessão iniciada')</script>";
                     header("location: view/indexAdmin.php");
                 } else if($usuario['funcional']){

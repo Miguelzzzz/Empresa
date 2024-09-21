@@ -3,7 +3,6 @@ require_once '../../model/classFuncionario.php';
 
 $funcionario = new Funcionario();
 
-
     if(isset($_GET['imprime'])){
         $funcional = $_GET['imprime'];
         $_SESSION['funcional'] = $funcional;

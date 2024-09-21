@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Departamento</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logout.css">
 </head>
 <body>
     <header>
@@ -38,9 +39,9 @@
         </nav>
     </header>
     <main>
-    <form action="../controller/logout.php" method="post">
-                <button type="submit">Sair</button>
-            </form>
+        <form action="../controller/logout.php" method="post">
+            <button type="submit">Logout</button>
+        </form>
     </main>
         <footer>
             Desenvolvedores: Miguel e Brenda.

@@ -40,8 +40,7 @@ create table cargo
 create table login (
     funcional int not null primary key,
     senha varchar(255) not null, -- aumentei para comportar o hash
-    acesso boolean not null,
-    foreign key (funcional) references funcionario (funcional)
+    foreign key (funcional) references funcionario (funcional) on delete cascade
 );
 
 -- Correção: Adicionar uma vírgula após o foreign key e ajustar as constraints.
@@ -54,7 +53,7 @@ foreign key (codCargo) references cargo (codCargo);
 -- select * from cargo;
 -- select * from funcionario;
 
--- Administrador do sistema 
+-- Administrador do sistema "vidamansa"
 
 insert into `cargo`(`nomeCargo`, `salario`, `created_at`)
 values ("Patrão","9000.00", "2024-09-20 09:32:00");
@@ -65,7 +64,7 @@ values ("Administração", "2024-09-20 09:32:00");
 insert into `funcionario`(`funcional`, `cpf`, `nome`, `telefone`, `endereco`, `img`, `acesso`, `created_at`, `codDepartamento`, `codCargo`)
 values ("1","12345678910","Jorge","11887663456","franco da rocha","view/img/jorgeAdmin.jpg","1","2024-09-20 09:32:00","1","1");
 
-insert into `login`(`funcional`, `senha`, `acesso`)
-values ("1", "$2y$10$CeBn6d358WmIeDqjyVUv8ew2o.3ocm3RycCWYAMmYwFNu2fm5B9S.", "1");
+insert into `login`(`funcional`, `senha`)
+values ("1", "$2y$10$CeBn6d358WmIeDqjyVUv8ew2o.3ocm3RycCWYAMmYwFNu2fm5B9S.");
 
 -- drop database empresa0702;
