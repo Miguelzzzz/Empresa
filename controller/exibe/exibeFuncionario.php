@@ -1,14 +1,19 @@
 <?php 
-
 session_start();
-
 require_once '../../model/classFuncionario.php';
 
 $funcionario = new Funcionario();
-$funcionarios = $funcionario->consultaFuncionario();
+$data = isset($_GET['search']) ? $_GET['search'] : '';
 
-    if ($funcionarios === false) {
-        echo "Erro ao consultar funcionarios.";
-        exit;
-    }
+if (empty($data)) {
+    $funcionarios = $funcionario->consultaFuncionario();
+} else {
+    $funcionarios = $funcionario->pesquisarFuncionario($data);
+}
+
+if ($funcionarios === false) {
+    echo "Erro ao consultar funcionarios.";
+    exit;
+}
+
 ?>  

@@ -103,7 +103,17 @@ header nav li > a:hover::after {
     display: block;
 }
 
+.tableContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    padding: 0 20px 0 20px;
+
+}
+
 table {
+    align-self: center;
     margin: 0 auto;
     color: white;
     border-collapse: collapse;
@@ -135,6 +145,8 @@ main {
 .const_table {
     justify-content: center; 
     align-items: center; 
+    width: 90vw;
+    font-size: small;
 }
 
 .const_table > h2{
@@ -151,4 +163,16 @@ footer {
     font-weight: 350;
     font-size: 15px;
     text-shadow: 0.1em 0.1em 0.1em rgb(68, 65, 65);
+}
+
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 15px 0 30px 0;
+}
+
+.searchContainer > input {
+    margin-right: 2px;
 }

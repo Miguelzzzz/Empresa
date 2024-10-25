@@ -97,7 +97,8 @@ class Funcionario {
         }
 
         public function obterFuncionario($funcional) {
-            $consulta = $this->PDO->prepare( "select funcionario.funcional, funcionario.nome, funcionario.cpf, funcionario.endereco, funcionario.telefone, funcionario.img, funcionario.created_at, funcionario.acesso, departamento.nomeDepartamento, cargo.nomeCargo from departamento inner join funcionario on departamento.codDepartamento = funcionario.codDepartamento inner join cargo on cargo.codCargo = funcionario.codCargo where funcionario.funcional = :funcional" );            $consulta->bindParam(':funcional', $funcional);
+            $consulta = $this->PDO->prepare( "select funcionario.funcional, funcionario.nome, funcionario.cpf, funcionario.endereco, funcionario.telefone, funcionario.img, funcionario.created_at, funcionario.acesso, departamento.nomeDepartamento, cargo.nomeCargo from departamento inner join funcionario on departamento.codDepartamento = funcionario.codDepartamento inner join cargo on cargo.codCargo = funcionario.codCargo where funcionario.funcional = :funcional" );            
+            $consulta->bindParam(':funcional', $funcional);
             $consulta->execute();
             return $consulta->fetch(PDO::FETCH_ASSOC);
         }
@@ -107,5 +108,14 @@ class Funcionario {
             $excluir->bindParam(':funcional', $funcional);
             $excluir->execute();
         }
+
+        public function pesquisarFuncionario($data) {
+            $pesquisar = $this->PDO->prepare("select funcionario.funcional, funcionario.nome, funcionario.cpf, funcionario.endereco, funcionario.telefone, funcionario.img, funcionario.created_at, funcionario.acesso, departamento.nomeDepartamento, cargo.nomeCargo from departamento inner join funcionario on departamento.codDepartamento = funcionario.codDepartamento inner join cargo on cargo.codCargo = funcionario.codCargo where funcional like :data or nome like :data");
+            $data = '%' . $data . '%'; 
+            $pesquisar->bindParam(':data', $data);
+            $pesquisar->execute();
+            return $pesquisar->fetchAll(PDO::FETCH_ASSOC); 
+        }
+        
     }
 ?>
